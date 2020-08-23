@@ -54,149 +54,151 @@ class _DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Padding(
-          padding: EdgeInsets.all(17.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'What is your crop?',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18.0,
-                ),
-              ),
-              SizedBox(height: 25.0),
-              TextFormField(
-                controller: searchController,
-                onChanged: (value) {
-                  setState(() {
-                    handleSearch(value);
-                  });
-                },
-                decoration: InputDecoration(
-                  border: new OutlineInputBorder(
-                    borderRadius: const BorderRadius.all(
-                      const Radius.circular(40.0),
-                    ),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.all(17.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'What is your crop?',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18.0,
                   ),
-                  hintText: "Search specific crop",
-                  filled: true,
-                  fillColor: Colors.white,
-                  suffixIcon: Icon(Icons.search),
                 ),
-              ),
-              SizedBox(height: 20.0),
-              FutureBuilder(
-                future: fetchCommodity(),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return CircularProgressIndicator();
-                  }
-                  return Container(
-                    height: 200.0,
-                    child: searchController.text.isEmpty ||
-                            filteredDecodedJson.length == 0
-                        ? GridView.builder(
-                            padding: EdgeInsets.all(5.0),
-                            gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 3,
-                              childAspectRatio: 2,
-                            ),
-                            itemCount: decodedJson.length,
-                            itemBuilder: (context, index) {
-                              return Container(
-                                child: Card(
-                                  elevation: 3,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(7),
-                                  ),
-                                  child: Row(
-                                    children: [
-                                      Container(
-                                          margin: EdgeInsets.only(left: 10.0),
-                                          height: 30,
-                                          width: 30,
-                                          child: Image.network(
-                                              decodedJson[index]['photo'])),
-                                      SizedBox(width: 10.0),
-                                      Flexible(
-                                        child: Text(
-                                          decodedJson[index]['commodityName'],
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold),
-                                          maxLines: 2,
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              );
-                            })
-                        : GridView.builder(
-                            padding: EdgeInsets.all(5.0),
-                            gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 3,
-                              childAspectRatio: 2,
-                            ),
-                            itemCount: filteredDecodedJson.length,
-                            itemBuilder: (context, index) {
-                              return Container(
-                                child: Card(
-                                  elevation: 3,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(7),
-                                  ),
-                                  child: Row(
-                                    children: [
-                                      Container(
-                                          margin: EdgeInsets.only(left: 10.0),
-                                          height: 30,
-                                          width: 30,
-                                          child: Image.network(
-                                              filteredDecodedJson[index]
-                                                  ['photo'])),
-                                      SizedBox(width: 10.0),
-                                      Flexible(
-                                        child: Text(
-                                          filteredDecodedJson[index]
-                                              ['commodityName'],
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold),
-                                          maxLines: 2,
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              );
-                            }),
-                  );
-                },
-              ),
-              SizedBox(height: 20),
-              Text(
-                'Buyer',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
+                SizedBox(height: 25.0),
+                TextFormField(
+                  controller: searchController,
+                  onChanged: (value) {
+                    setState(() {
+                      handleSearch(value);
+                    });
+                  },
+                  decoration: InputDecoration(
+                    border: new OutlineInputBorder(
+                      borderRadius: const BorderRadius.all(
+                        const Radius.circular(40.0),
+                      ),
+                    ),
+                    hintText: "Search specific crop",
+                    filled: true,
+                    fillColor: Colors.white,
+                    suffixIcon: Icon(Icons.search),
+                  ),
                 ),
-              ),
-              SizedBox(height: 20),
-              FutureBuilder(
-                future: fetchBuyer(),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return CircularProgressIndicator();
-                  }
-                  return BuyerContainer(buyerBody: buyerBody);
-                },
-              ),
-            ],
+                SizedBox(height: 20.0),
+                FutureBuilder(
+                  future: fetchCommodity(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return CircularProgressIndicator();
+                    }
+                    return Container(
+                      height: 200.0,
+                      child: searchController.text.isEmpty ||
+                              filteredDecodedJson.length == 0
+                          ? GridView.builder(
+                              padding: EdgeInsets.all(5.0),
+                              gridDelegate:
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 3,
+                                childAspectRatio: 2,
+                              ),
+                              itemCount: decodedJson.length,
+                              itemBuilder: (context, index) {
+                                return Container(
+                                  child: Card(
+                                    elevation: 3,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(7),
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                            margin: EdgeInsets.only(left: 10.0),
+                                            height: 30,
+                                            width: 30,
+                                            child: Image.network(
+                                                decodedJson[index]['photo'])),
+                                        SizedBox(width: 10.0),
+                                        Flexible(
+                                          child: Text(
+                                            decodedJson[index]['commodityName'],
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold),
+                                            maxLines: 2,
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              })
+                          : GridView.builder(
+                              padding: EdgeInsets.all(5.0),
+                              gridDelegate:
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 3,
+                                childAspectRatio: 2,
+                              ),
+                              itemCount: filteredDecodedJson.length,
+                              itemBuilder: (context, index) {
+                                return Container(
+                                  child: Card(
+                                    elevation: 3,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(7),
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                            margin: EdgeInsets.only(left: 10.0),
+                                            height: 30,
+                                            width: 30,
+                                            child: Image.network(
+                                                filteredDecodedJson[index]
+                                                    ['photo'])),
+                                        SizedBox(width: 10.0),
+                                        Flexible(
+                                          child: Text(
+                                            filteredDecodedJson[index]
+                                                ['commodityName'],
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold),
+                                            maxLines: 2,
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              }),
+                    );
+                  },
+                ),
+                SizedBox(height: 20),
+                Text(
+                  'Buyer',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
+                ),
+                SizedBox(height: 20),
+                FutureBuilder(
+                  future: fetchBuyer(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return CircularProgressIndicator();
+                    }
+                    return BuyerContainer(buyerBody: buyerBody);
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),
