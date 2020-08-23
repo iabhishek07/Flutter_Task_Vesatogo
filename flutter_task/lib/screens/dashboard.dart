@@ -82,6 +82,7 @@ class _DashboardState extends State<Dashboard> {
                       ),
                     ),
                     hintText: "Search specific crop",
+                    focusColor: null,
                     filled: true,
                     fillColor: Colors.white,
                     suffixIcon: Icon(Icons.search),
@@ -92,7 +93,7 @@ class _DashboardState extends State<Dashboard> {
                   future: fetchCommodity(),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return CircularProgressIndicator();
+                      return Center(child: CircularProgressIndicator());
                     }
                     return Container(
                       height: 200.0,
@@ -192,7 +193,7 @@ class _DashboardState extends State<Dashboard> {
                   future: fetchBuyer(),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return CircularProgressIndicator();
+                      return Center(child: CircularProgressIndicator());
                     }
                     return BuyerContainer(buyerBody: buyerBody);
                   },
@@ -273,101 +274,125 @@ class BuyerContainer extends StatelessWidget {
                         Row(
                           children: [
                             Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5),
+                                color: Colors.grey[200],
+                              ),
                               height: 40,
                               width: 60,
-                              color: Colors.grey[300],
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    buyerBody[index]['price'][0]['date'],
-                                    style: TextStyle(
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.bold,
+                              child: Padding(
+                                padding: const EdgeInsets.all(3.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      buyerBody[index]['price'][0]['date'],
+                                      style: TextStyle(
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
-                                  ),
-                                  SizedBox(height: 5.0),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        '₹${buyerBody[index]['price'][0]['price']}',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 16,
+                                    SizedBox(height: 2.0),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          '₹${buyerBody[index]['price'][0]['price']}/',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 16,
+                                          ),
                                         ),
-                                      ),
-                                      Text(
-                                        buyerBody[index]['price'][1]['sku'],
-                                      ),
-                                    ],
-                                  ),
-                                ],
+                                        Text(
+                                          buyerBody[index]['price'][0]['sku'],
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                             SizedBox(width: 5.0),
                             Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5),
+                                color: Colors.grey[200],
+                              ),
                               height: 40,
                               width: 60,
-                              color: Colors.grey[300],
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    buyerBody[index]['price'][1]['date'],
-                                    style: TextStyle(
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.bold,
+                              child: Padding(
+                                padding: const EdgeInsets.all(3.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      buyerBody[index]['price'][1]['date'],
+                                      style: TextStyle(
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
-                                  ),
-                                  SizedBox(height: 5.0),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        '₹${buyerBody[index]['price'][1]['price']}',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 16,
+                                    SizedBox(height: 2.0),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          '₹${buyerBody[index]['price'][1]['price']}/',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 16,
+                                          ),
                                         ),
-                                      ),
-                                      Text(
-                                        buyerBody[index]['price'][1]['sku'],
-                                      ),
-                                    ],
-                                  ),
-                                ],
+                                        Text(
+                                          buyerBody[index]['price'][1]['sku'],
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                             SizedBox(width: 5.0),
                             Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5),
+                                color: Colors.grey[200],
+                              ),
                               height: 40,
                               width: 60,
-                              color: Colors.grey[300],
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    buyerBody[index]['price'][2]['date'],
-                                    style: TextStyle(
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.bold,
+                              child: Padding(
+                                padding: const EdgeInsets.all(3.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      buyerBody[index]['price'][2]['date'],
+                                      style: TextStyle(
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
-                                  ),
-                                  SizedBox(height: 5.0),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        '₹${buyerBody[index]['price'][2]['price']}',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 16,
+                                    SizedBox(height: 2.0),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          '₹${buyerBody[index]['price'][2]['price']}/',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 16,
+                                          ),
                                         ),
-                                      ),
-                                      Text(
-                                        buyerBody[index]['price'][1]['sku'],
-                                      ),
-                                    ],
-                                  ),
-                                ],
+                                        Text(
+                                          buyerBody[index]['price'][1]['sku'],
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ],

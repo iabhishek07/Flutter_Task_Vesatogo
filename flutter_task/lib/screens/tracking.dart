@@ -310,6 +310,7 @@ class _TrackingState extends State<Tracking> {
               zoomGesturesEnabled: true,
               zoomControlsEnabled: false,
               polylines: Set<Polyline>.of(polylines.values),
+              markers: markers != null ? Set<Marker>.from(markers) : null,
               onMapCreated: (GoogleMapController controller) {
                 mapController = controller;
               },
